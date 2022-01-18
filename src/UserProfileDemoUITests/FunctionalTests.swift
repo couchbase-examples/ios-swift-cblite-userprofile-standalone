@@ -79,8 +79,10 @@ class FunctionalTests:
             password.tap()
             password.typeText(TestingHelper.TESTPASSWORD)
         } else {
+            password.tap()
+            sleep(1)
             UIPasteboard.general.string = TestingHelper.TESTPASSWORD
-            password.press(forDuration: 1.1)
+            password.press(forDuration: 1.5)
             application.menuItems["Paste"].tap()
             sleep(3)
         }
@@ -105,8 +107,10 @@ class FunctionalTests:
             password.tap()
             password.typeText(TestingHelper.TESTPASSWORD)
         } else {
+            sleep(1)
+            password.tap()
             UIPasteboard.general.string = TestingHelper.TESTPASSWORD
-            password.press(forDuration: 1.1)
+            password.press(forDuration: 1.5)
             application.menuItems["Paste"].tap()
             sleep(3)
         }
