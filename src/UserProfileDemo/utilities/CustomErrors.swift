@@ -1,10 +1,5 @@
-//
-//  CustomErrors.swift
 //  UserProfileDemo
-//
-//  Created by Priya Rajagopal on 2/19/18.
-//  Copyright © 2018 Couchbase Inc. All rights reserved.
-//
+//  Copyright © 2022 Couchbase Inc. All rights reserved.
 
 import Foundation
 enum UserProfileError: LocalizedError , CustomStringConvertible{
@@ -16,7 +11,6 @@ enum UserProfileError: LocalizedError , CustomStringConvertible{
     case DocumentFetchException
     case ImageProcessingFailure
     case ImageTooBig
-    
 }
 
 extension UserProfileError {
@@ -42,13 +36,10 @@ extension UserProfileError {
         }
         
     }
-    
 }
+
 extension LocalizedError where Self: CustomStringConvertible {
     var errorDescription: String? {
         return description
     }
-    
-    
 }
-

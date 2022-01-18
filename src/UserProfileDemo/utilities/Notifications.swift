@@ -1,4 +1,3 @@
-//
 //  UserProfileDemo
 //  Copyright © 2022 Couchbase Inc. All rights reserved.
 

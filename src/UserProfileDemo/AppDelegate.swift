@@ -1,10 +1,5 @@
-//
-//  AppDelegate.swift
 //  UserProfileDemo
-//
-//  Created by Priya Rajagopal on 2/16/18.
-//  Copyright © 2018 Couchbase Inc. All rights reserved.
-//
+//  Copyright © 2022 Couchbase Inc. All rights reserved.
 
 import UIKit
 
@@ -14,9 +9,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     fileprivate var loginViewController:LoginViewController?
     fileprivate var userProfileViewController:ProfileViewController?
-    //fileprivate var userProfileViewController:ProfileTableViewController?
     fileprivate var userProfileNavViewController:UINavigationController?
-    
     
     fileprivate var cbMgr = DatabaseManager.shared
     fileprivate var isObservingForLoginEvents:Bool = false
@@ -57,7 +50,6 @@ extension AppDelegate {
     func loadLoginViewController() {
         if let loginVC = loginViewController {
             window?.rootViewController = loginVC
-            
         }
         else {
             let storyboard = UIStoryboard.init(name: "Main", bundle: Bundle.main)
@@ -66,19 +58,16 @@ extension AppDelegate {
             
         }
         self.registerNotificationObservers()
-
     }
     
     func loadProfileViewController() {
         if let profileNVC = userProfileNavViewController {
             window?.rootViewController = profileNVC
-            
         }
         else {
             let storyboard = UIStoryboard.init(name: "Main", bundle: Bundle.main)
             userProfileNavViewController = storyboard.instantiateViewController(withIdentifier: "UserProfileNVC") as? UINavigationController
             window?.rootViewController = userProfileNavViewController
-            
         }
         
     }
@@ -88,7 +77,6 @@ extension AppDelegate {
         DatabaseManager.shared.closeDatabaseForCurrentUser()
         loadLoginViewController()
     }
-    
     
     func isUserLoggedIn() -> Bool{
         return self.window?.rootViewController == userProfileViewController
@@ -104,7 +92,6 @@ extension AppDelegate {
                 guard let `self` = self else { return }
                 print("Log in success")
                 self.loadProfileViewController()
-                
             }
             
             NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: AppNotifications.loginInFailure.name.rawValue), object: nil, queue: nil) {[unowned self] (notification) in
@@ -118,23 +105,14 @@ extension AppDelegate {
             NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: AppNotifications.logout.name.rawValue), object: nil, queue: nil) { [unowned self] (notification) in
                 self.logout()
             }
-            
             isObservingForLoginEvents = true
         }
     }
-    
     
     func deregisterNotificationObservers() {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: AppNotifications.loginInSuccess.name.rawValue), object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: AppNotifications.loginInFailure.name.rawValue), object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: AppNotifications.logout.name.rawValue), object: nil)
         isObservingForLoginEvents = false
-        
     }
-    
 }
-
-
-
-
-

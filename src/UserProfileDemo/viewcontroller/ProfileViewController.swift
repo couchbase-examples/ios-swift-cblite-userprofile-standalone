@@ -1,10 +1,5 @@
-//
-//  ProfileViewController.swift
 //  UserProfileDemo
-//
-//  Created by Aaron LaBeau on 1/17/22.
 //  Copyright © 2022 Couchbase Inc. All rights reserved.
-//
 
 import Foundation
 import UIKit
@@ -118,6 +113,10 @@ class ProfileViewController
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        tfName.text = ""
+        tfAddress.text = ""
+        lblUsername.text = ""
+        ivProfilePic.image = UIImage.init(imageLiteralResourceName: "default-user-thumbnail")
         self.userPresenter.detachPresentingView(self)
     }
     
@@ -149,8 +148,6 @@ class ProfileViewController
     
     //maps data from DAO to fields on View Controller
     func setFields(){
-        doneButton.isEnabled = false
-        
         tfName.text = record?.name
         tfAddress.text = record?.address
         lblUsername.text = record?.email

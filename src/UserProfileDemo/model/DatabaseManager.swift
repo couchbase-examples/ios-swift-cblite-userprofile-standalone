@@ -1,10 +1,5 @@
-//
-//  DatabaseManager.swift
 //  UserProfileDemo
-//
-//  Created by Priya Rajagopal on 2/19/18.
-//  Copyright © 2018 Couchbase Inc. All rights reserved.
-//
+//  Copyright © 2022 Couchbase Inc. All rights reserved.
 
 import Foundation
 import CouchbaseLiteSwift
@@ -54,19 +49,14 @@ class DatabaseManager {
             try self._db?.close()
         }
         catch  {
-            
         }
     }
-    
 }
 
 // MARK: Public
 extension DatabaseManager {
-    // tag::openOrCreateDatabaseForUser[]
     func openOrCreateDatabaseForUser(_ user:String, password:String, handler:(_ error:Error?)->Void) {
-    // end::openOrCreateDatabaseForUser[]
         do {
-            // tag::dbconfig[]
             var options = DatabaseConfiguration()
             guard let defaultDBPath = _applicationSupportDirectory else {
                 fatalError("Could not open Application Support Directory for app!")
@@ -83,14 +73,10 @@ extension DatabaseManager {
             }
             // Set the folder path for the CBLite DB
             options.directory = userFolderPath
-            // end::dbconfig[]
    
             print("Will open/create DB  at path \(userFolderPath)")
-            // tag::dbcreate[]
             // Create a new DB or get handle to existing DB at specified path
             _db = try Database(name: kDBName, config: options)
-            
-            // end::dbcreate[]
             
             // register for DB change notifications
             self.registerForDatabaseChanges()
@@ -104,18 +90,14 @@ extension DatabaseManager {
         }
     }
     
-    // tag::closeDatabaseForCurrentUser[]
     func closeDatabaseForCurrentUser() -> Bool {
-    // end::closeDatabaseForCurrentUser[]
         do {
             print(#function)
             // Get handle to DB  specified path
             if let db = self.db {
                 deregisterForDatabaseChanges()
                 
-                // tag::dbclose[]
                 try db.close()
-                // end::dbclose[]
                 _db = nil
             }
             
@@ -126,11 +108,8 @@ extension DatabaseManager {
         }
     }
     
-    // tag::registerForDatabaseChanges[]
     fileprivate func registerForDatabaseChanges() {
-        // end::registerForDatabaseChanges[]
         
-        // tag::adddbchangelistener[]
         // Add database change listener
         dbChangeListenerToken = db?.addChangeListener({ [weak self](change) in
             guard let `self` = self else {
@@ -148,20 +127,14 @@ extension DatabaseManager {
                 }
             }
         })
-        // end::adddbchangelistener[]
     }
     
-    // tag::deregisterForDatabaseChanges[]
     fileprivate func deregisterForDatabaseChanges() {
-        // end::deregisterForDatabaseChanges[]
         
-        // tag::removedbchangelistener[]
         // Add database change listener
         if let dbChangeListenerToken = self.dbChangeListenerToken {
             db?.removeChangeListener(withToken: dbChangeListenerToken)
         }
-   
-        // end::removedbchangelistener[]
     }
 }
 
@@ -172,6 +145,4 @@ extension DatabaseManager {
         Database.log.console.domains = .all
         Database.log.console.level = .debug
     }
-    
 }
-

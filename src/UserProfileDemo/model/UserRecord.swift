@@ -1,15 +1,9 @@
-//
-//  UserProfile.swift
 //  UserProfileDemo
-//
-//  Created by Priya Rajagopal on 3/6/18.
-//  Copyright © 2018 Couchbase Inc. All rights reserved.
-//
+//  Copyright © 2022 Couchbase Inc. All rights reserved.
 
 import Foundation
 import UIKit
 
-// tag::userrecord[]
 let kUserRecordDocumentType = "user"
 typealias ExtendedData = [[String:Any]]
 struct UserRecord : CustomStringConvertible{
@@ -23,7 +17,4 @@ struct UserRecord : CustomStringConvertible{
     var description: String {
         return "name = \(String(describing: name)), email = \(String(describing: email)), address = \(String(describing: address)), imageData = \(imageData)"
     }
-    
-
 }
-// end::userrecord[]

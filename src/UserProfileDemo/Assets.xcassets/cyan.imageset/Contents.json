@@ -1,22 +1,22 @@
 {
   "images" : [
     {
+      "filename" : "cyan.png",
+      "idiom" : "universal",
       "resizing" : {
-        "mode" : "9-part",
-        "center" : {
-          "mode" : "tile",
-          "width" : 1,
-          "height" : 1
-        },
         "cap-insets" : {
           "bottom" : 25,
-          "top" : 24,
+          "left" : 74,
           "right" : 75,
-          "left" : 74
-        }
+          "top" : 24
+        },
+        "center" : {
+          "height" : 1,
+          "mode" : "tile",
+          "width" : 1
+        },
+        "mode" : "9-part"
       },
-      "idiom" : "universal",
-      "filename" : "cyan.png",
       "scale" : "1x"
     },
     {
@@ -29,7 +29,7 @@
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   }
 }

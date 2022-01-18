@@ -23,7 +23,6 @@
 		5F86E8552037E292007ED29E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F86E8532037E292007ED29E /* LaunchScreen.storyboard */; };
 		5F86E87C203B659C007ED29E /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F86E87B203B659C007ED29E /* Notifications.swift */; };
 		5F86E87E203B65D1007ED29E /* CustomErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F86E87D203B65D1007ED29E /* CustomErrors.swift */; };
-		5F86E880203B65FF007ED29E /* StoryboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F86E87F203B65FF007ED29E /* StoryboardExtension.swift */; };
 		5F86E884203B66B5007ED29E /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F86E883203B66B5007ED29E /* DatabaseManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,7 +68,6 @@
 		5F86E8562037E292007ED29E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F86E87B203B659C007ED29E /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		5F86E87D203B65D1007ED29E /* CustomErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomErrors.swift; sourceTree = "<group>"; };
-		5F86E87F203B65FF007ED29E /* StoryboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardExtension.swift; sourceTree = "<group>"; };
 		5F86E883203B66B5007ED29E /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,13 +100,6 @@
 			path = UserProfileDemoUITests;
 			sourceTree = "<group>";
 		};
-		5F61CCB0204C9EF600399C1D /* views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = views;
-			sourceTree = "<group>";
-		};
 		5F7CCFAD2048498B0019D450 /* presenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,7 +130,6 @@
 		5F86E8492037E292007ED29E /* UserProfileDemo */ = {
 			isa = PBXGroup;
 			children = (
-				5F61CCB0204C9EF600399C1D /* views */,
 				5F7CCFAD2048498B0019D450 /* presenter */,
 				5F86E882203B669C007ED29E /* model */,
 				5F86E87A203B6577007ED29E /* utilities */,
@@ -158,7 +148,6 @@
 			children = (
 				5F86E87B203B659C007ED29E /* Notifications.swift */,
 				5F86E87D203B65D1007ED29E /* CustomErrors.swift */,
-				5F86E87F203B65FF007ED29E /* StoryboardExtension.swift */,
 				0D83513327960D8000580A24 /* FormTextField.swift */,
 			);
 			path = utilities;
@@ -310,7 +299,6 @@
 				5F86E84D2037E292007ED29E /* LoginViewController.swift in Sources */,
 				5F7CCFAF204849BE0019D450 /* UserPresenter.swift in Sources */,
 				5F61CCBA204F578100399C1D /* UserRecord.swift in Sources */,
-				5F86E880203B65FF007ED29E /* StoryboardExtension.swift in Sources */,
 				0D83513427960D8000580A24 /* FormTextField.swift in Sources */,
 				5F86E84B2037E292007ED29E /* AppDelegate.swift in Sources */,
 			);
@@ -510,7 +498,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = E3FRN9JNGJ;
+				DEVELOPMENT_TEAM = N2Q372V7W2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks/iOS",
@@ -524,7 +512,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.UserProfileDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.couchbase.UserProfileDemoTutorial;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -537,7 +525,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = E3FRN9JNGJ;
+				DEVELOPMENT_TEAM = N2Q372V7W2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks/iOS",
@@ -551,7 +539,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.UserProfileDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.couchbase.UserProfileDemoTutorial;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

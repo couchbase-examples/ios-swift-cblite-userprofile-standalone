@@ -1,7 +1,5 @@
-//
 //  UserProfileDemo
 //  Copyright © 2022 Couchbase Inc. All rights reserved.
-//
 
 import Foundation
 import UIKit
@@ -28,23 +26,19 @@ extension PresentingViewProtocol {
     public func dataFinishedLoading() {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
-    
 }
 
 // implementation of INVPresentingViewProtocol only in cases where the presenting view is a UIViewController
 extension PresentingViewProtocol where Self:UIViewController {
     
     func showAlertWithTitle(_ title:String?, message:String) {
-        
         let alertController = UIAlertController(title: title ?? "", message: message, preferredStyle: UIAlertController.Style.alert)
         let okAction = UIAlertAction(title: NSLocalizedString("OK",comment:""), style: UIAlertAction.Style.default) { (result : UIAlertAction) -> Void in
             self.dismiss(animated: true, completion: {
-                
             })
         }
         
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)
     }
-    
 }
