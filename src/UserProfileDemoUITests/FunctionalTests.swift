@@ -69,14 +69,24 @@ class FunctionalTests:
         let username = application.textFields[TestingHelper.IDUSERNAME]
         let password = application.secureTextFields[TestingHelper.IDPASSWORD]
         let btn = application.buttons[TestingHelper.IDLOGIN]
-            
+        let systemVersion = UIDevice.current.systemVersion
+        
         username.tap()
         username.typeText(TestingHelper.TESTUSERNAME)
-        password.tap()
-        password.typeText(TestingHelper.IDPASSWORD)
         
+        //fix for older IOS versions than 15.x
+        if (systemVersion.contains("15.")) {
+            password.tap()
+            password.typeText(TestingHelper.TESTPASSWORD)
+        } else {
+            UIPasteboard.general.string = TestingHelper.TESTPASSWORD
+            password.press(forDuration: 1.1)
+            application.menuItems["Paste"].tap()
+            sleep(3)
+        }
+
         btn.tap()
-        sleep(5)
+        sleep(3)
     }
     
     //arrange
@@ -85,11 +95,21 @@ class FunctionalTests:
         let username = application.textFields[TestingHelper.IDUSERNAME]
         let password = application.secureTextFields[TestingHelper.IDPASSWORD]
         let btn = application.buttons[TestingHelper.IDLOGIN]
-            
+        let systemVersion = UIDevice.current.systemVersion
+        
         username.tap()
         username.typeText(TestingHelper.TESTUSERNAME2)
-        password.tap()
-        password.typeText(TestingHelper.IDPASSWORD)
+        
+        //fix for older IOS versions than 15.x
+        if (systemVersion.contains("15.")) {
+            password.tap()
+            password.typeText(TestingHelper.TESTPASSWORD)
+        } else {
+            UIPasteboard.general.string = TestingHelper.TESTPASSWORD
+            password.press(forDuration: 1.1)
+            application.menuItems["Paste"].tap()
+            sleep(3)
+        }
         
         btn.tap()
         sleep(5)
@@ -139,6 +159,7 @@ class FunctionalTests:
         let logOffButton = navBar.buttons[TestingHelper.LOGOFFBUTTON]
         
         name.tap()
+        sleep(2)
         name.typeText(TestingHelper.TESTFULLNAME)
         sleep(1)
         
@@ -146,6 +167,7 @@ class FunctionalTests:
         application.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.tap()
         
         address.tap()
+        sleep(2)
         address.typeText(TestingHelper.TESTADDRESS)
         sleep(1)
         
@@ -161,16 +183,19 @@ class FunctionalTests:
             application.sheets.scrollViews.otherElements.buttons[TestingHelper.SELECTPHOTOBUTTON].tap()
         
             sleep(1)
+            
             application.scrollViews.otherElements.images.firstMatch.tap()
-        
-            doneButton.tap()
-            sleep(1)
-            application.alerts.scrollViews.otherElements.buttons[TestingHelper.OKBUTTON].tap()
+            
+            sleep(2)
         }
         
-        sleep(1)
-        logOffButton.tap()
+        doneButton.tap()
+        sleep(2)
         
+        application.alerts.scrollViews.otherElements.buttons[TestingHelper.OKBUTTON].tap()
+        sleep(1)
+        
+        logOffButton.tap()
     }
     
     func addScreenshot(application: XCUIApplication, name: String) {
