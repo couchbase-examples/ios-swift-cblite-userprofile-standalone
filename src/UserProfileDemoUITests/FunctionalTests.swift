@@ -152,18 +152,21 @@ class FunctionalTests:
         //dismiss keyboard
         application.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.tap()
         
-        //update image
-        btnUpdateImage.tap()
-        sleep(3)
-        application.sheets.scrollViews.otherElements.buttons[TestingHelper.SELECTPHOTOBUTTON].tap()
+        //update image - only testing on 15.x because UI is different in older OS
+        let systemVersion = UIDevice.current.systemVersion
         
-        sleep(1)
-        application.scrollViews.otherElements.images.firstMatch.tap()
+        if (systemVersion.contains("15.")) {
+            btnUpdateImage.tap()
+            sleep(3)
+            application.sheets.scrollViews.otherElements.buttons[TestingHelper.SELECTPHOTOBUTTON].tap()
         
+            sleep(1)
+            application.scrollViews.otherElements.images.firstMatch.tap()
         
-        doneButton.tap()
-        sleep(1)
-        application.alerts.scrollViews.otherElements.buttons[TestingHelper.OKBUTTON].tap()
+            doneButton.tap()
+            sleep(1)
+            application.alerts.scrollViews.otherElements.buttons[TestingHelper.OKBUTTON].tap()
+        }
         
         sleep(1)
         logOffButton.tap()
