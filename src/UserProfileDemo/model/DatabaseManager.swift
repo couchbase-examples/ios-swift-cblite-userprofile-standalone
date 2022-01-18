@@ -116,7 +116,7 @@ extension DatabaseManager {
                 return
             }
             for docId in change.documentIDs   {
-                if let docString = docId as? String {
+                if let docString = docId as String? {
                     let doc = self._db?.document(withID: docString)
                     if doc == nil {
                         print("Document was deleted")

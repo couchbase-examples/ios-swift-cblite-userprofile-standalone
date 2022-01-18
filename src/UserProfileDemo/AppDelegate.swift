@@ -74,7 +74,7 @@ extension AppDelegate {
     
     func logout() {
         self.deregisterNotificationObservers()
-        DatabaseManager.shared.closeDatabaseForCurrentUser()
+        let _ = DatabaseManager.shared.closeDatabaseForCurrentUser()
         loadLoginViewController()
     }
     

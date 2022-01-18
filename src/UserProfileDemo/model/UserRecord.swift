@@ -15,6 +15,6 @@ struct UserRecord : CustomStringConvertible{
     var extended:ExtendedData? // future
     
     var description: String {
-        return "name = \(String(describing: name)), email = \(String(describing: email)), address = \(String(describing: address)), imageData = \(imageData)"
+        return "name = \(String(describing: name)), email = \(String(describing: email)), address = \(String(describing: address)), imageData = \(imageData?.debugDescription ?? " ")"
     }
 }

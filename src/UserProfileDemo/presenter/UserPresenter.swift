@@ -70,7 +70,7 @@ extension UserPresenter {
         // This will create a new instance of MutableDocument or will
         // fetch existing one
         // Get mutable version
-        var mutableDoc = MutableDocument.init(id: self.userProfileDocId)
+        let mutableDoc = MutableDocument.init(id: self.userProfileDocId)
 
         mutableDoc.setString(record?.type, forKey: UserRecordDocumentKeys.type.rawValue)
         
@@ -93,7 +93,7 @@ extension UserPresenter {
         do {
             // This will create a document if it does not exist and overrite it if it exists
             // Using default concurrency control policy of "writes always win"
-            try? db.saveDocument(mutableDoc)
+            try db.saveDocument(mutableDoc)
             handler(nil)
         }
         catch {

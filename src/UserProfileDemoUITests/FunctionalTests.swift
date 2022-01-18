@@ -31,10 +31,6 @@ struct TestingHelper {
 class FunctionalTests:
     XCTestCase {
     
-    override class var runsForEachTargetApplicationUIConfiguration: Bool {
-        false
-    }
-
     override func setUpWithError() throws {
         continueAfterFailure = false
         XCUIDevice.shared.orientation = .portrait
