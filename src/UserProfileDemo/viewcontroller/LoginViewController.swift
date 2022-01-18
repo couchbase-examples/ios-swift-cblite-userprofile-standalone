@@ -32,6 +32,7 @@ class LoginViewController
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.passwordTextEntry.text = nil
+        self.userTextEntry.text = nil
     }
 }
 

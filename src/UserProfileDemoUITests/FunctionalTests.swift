@@ -1,7 +1,5 @@
-//
-//  UserProfileDemoUITestsLaunchTests.swift
+//  UserProfileDemoUITests
 //  Copyright © 2022 Couchbase Inc. All rights reserved.
-//
 
 import XCTest
 
@@ -19,6 +17,7 @@ struct TestingHelper {
     
     static let IDNAME: String = "idName"
     static let IDADDRESS: String = "idAddress"
+    static let IDEMAIL: String = "idEmail"
     static let IDUPDATEIMAGE: String = "idUpdateImage"
     static let NAVIGATIONBAR: String = "Your Profile"
     static let UPDATEIMAGEBUTTONTEXT: String = "Update Image"
@@ -49,24 +48,26 @@ class FunctionalTests:
         let app = XCUIApplication()
         app.launch()
         
-        //login demo user
+        //arrange - login demo user
         loginDemoUser(application: app)
        
-        //update profile
-        UpdateUserProfile(application: app)
+        //act - update profile
+        updateUserProfile(application: app)
         
-        //login demo user  - assert profile was updated
+        //arrange - login demo user
+        loginDemoUser1(application: app)
         
+        //assert - fields are blank because we should be loading a new user
+        assertUserProfileDemoUser1(application: app)
+       
+        //arrange - log back in as demo user and assert values were pulled from db
+        loginDemoUser(application: app)
         
-        //logout
-        
-        //login user without profile
-        
-        
-        //asert fields are empty
-
+        //assert - data was retreived from the database
+        assertUserProfileDemoUser(application: app)
     }
     
+    //arrange
     func loginDemoUser(application: XCUIApplication) {
         
         let username = application.textFields[TestingHelper.IDUSERNAME]
@@ -82,7 +83,58 @@ class FunctionalTests:
         sleep(5)
     }
     
-    func UpdateUserProfile(application: XCUIApplication){
+    //arrange
+    func loginDemoUser1(application: XCUIApplication) {
+        
+        let username = application.textFields[TestingHelper.IDUSERNAME]
+        let password = application.secureTextFields[TestingHelper.IDPASSWORD]
+        let btn = application.buttons[TestingHelper.IDLOGIN]
+            
+        username.tap()
+        username.typeText(TestingHelper.TESTUSERNAME2)
+        password.tap()
+        password.typeText(TestingHelper.IDPASSWORD)
+        
+        btn.tap()
+        sleep(5)
+    }
+    
+    //assert
+    func assertUserProfileDemoUser(application: XCUIApplication) {
+        let name = application.textFields[TestingHelper.IDNAME].value as! String
+        let address = application.textFields[TestingHelper.IDADDRESS].value as! String
+        let email = application.staticTexts[TestingHelper.IDEMAIL].label 
+        
+        let navBar = application.navigationBars[TestingHelper.NAVIGATIONBAR]
+        let logOffButton = navBar.buttons[TestingHelper.LOGOFFBUTTON]
+       
+        //asert
+        XCTAssertEqual(name, TestingHelper.TESTFULLNAME)
+        XCTAssertEqual(address, TestingHelper.TESTADDRESS)
+        XCTAssertEqual(email, TestingHelper.TESTUSERNAME)
+        
+        logOffButton.tap()
+        sleep(5)
+    }
+    
+    //assert
+    func assertUserProfileDemoUser1(application: XCUIApplication) {
+        let name = application.textFields[TestingHelper.IDNAME].value as! String
+        let address = application.textFields[TestingHelper.IDADDRESS].value as! String
+        
+        let navBar = application.navigationBars[TestingHelper.NAVIGATIONBAR]
+        let logOffButton = navBar.buttons[TestingHelper.LOGOFFBUTTON]
+       
+        //asert
+        XCTAssertEqual(name, "Name")
+        XCTAssertEqual(address, "Address")
+        
+        logOffButton.tap()
+        sleep(5)
+    }
+    
+    //act
+    func updateUserProfile(application: XCUIApplication){
         let name = application.textFields[TestingHelper.IDNAME]
         let address = application.textFields[TestingHelper.IDADDRESS]
         let btnUpdateImage = application.buttons[TestingHelper.IDUPDATEIMAGE]
@@ -127,11 +179,5 @@ class FunctionalTests:
         attachment.name =  name
         attachment.lifetime = .keepAlways
         add(attachment)
-    }
-    
-    func recordTesting() {
-        let app = XCUIApplication()
-        app.launch()
-        
     }
 }
