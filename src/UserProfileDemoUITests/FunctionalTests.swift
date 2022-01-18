@@ -49,10 +49,6 @@ class FunctionalTests:
         let app = XCUIApplication()
         app.launch()
         
-        // Insert steps here to perform after app launch but before taking a screenshot,
-        // such as logging into a test account or navigating somewhere in the app
-        addScreenshot(application: app, name: "App Launch")
-        
         //login demo user
         loginDemoUser(application: app)
        
@@ -82,13 +78,11 @@ class FunctionalTests:
         password.tap()
         password.typeText(TestingHelper.IDPASSWORD)
         
-        addScreenshot(application: application, name: "Login demo@example.com")
         btn.tap()
         sleep(5)
     }
     
     func UpdateUserProfile(application: XCUIApplication){
-        addScreenshot(application: application, name: "demo before profile update")
         let name = application.textFields[TestingHelper.IDNAME]
         let address = application.textFields[TestingHelper.IDADDRESS]
         let btnUpdateImage = application.buttons[TestingHelper.IDUPDATEIMAGE]
@@ -118,16 +112,13 @@ class FunctionalTests:
         sleep(1)
         application.scrollViews.otherElements.images[TestingHelper.PHOTONAMESELECT].tap()
         
-        addScreenshot(application: application, name: "demo after profile update")
         
         doneButton.tap()
         sleep(1)
-        addScreenshot(application: application, name: "demo save profile")
         application.alerts.scrollViews.otherElements.buttons[TestingHelper.OKBUTTON].tap()
         
         sleep(1)
         logOffButton.tap()
-        addScreenshot(application: application, name: "demo logOff")
         
     }
     
