@@ -13,7 +13,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     fileprivate var loginViewController:LoginViewController?
-    fileprivate var userProfileViewController:ProfileTableViewController?
+    fileprivate var userProfileViewController:ProfileViewController?
+    //fileprivate var userProfileViewController:ProfileTableViewController?
     fileprivate var userProfileNavViewController:UINavigationController?
     
     
@@ -21,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     fileprivate var isObservingForLoginEvents:Bool = false
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         self.loadLoginViewController()
         return true

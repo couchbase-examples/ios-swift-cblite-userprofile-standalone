@@ -70,7 +70,6 @@ extension DatabaseManager {
             var options = DatabaseConfiguration()
             guard let defaultDBPath = _applicationSupportDirectory else {
                 fatalError("Could not open Application Support Directory for app!")
-                return
             }
             // Create a folder for the logged in user if one does not exist
             let userFolderUrl = defaultDBPath.appendingPathComponent(user, isDirectory: true)
@@ -170,9 +169,8 @@ extension DatabaseManager {
 extension DatabaseManager {
     
     fileprivate func enableCrazyLevelLogging() {
-        Database.log.console.domains = LogDomains(rawValue: LogDomain.all.hashValue)
-        Database.log.console.level = .verbose
-      
+        Database.log.console.domains = .all
+        Database.log.console.level = .debug
     }
     
 }

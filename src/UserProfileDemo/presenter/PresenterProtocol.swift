@@ -1,9 +1,6 @@
 //
-//  PresenterProtocol.swift
 //  UserProfileDemo
-//
-//  Created by Priya Rajagopal on 3/1/18.
-//  Copyright © 2018 Couchbase Inc. All rights reserved.
+//  Copyright © 2022 Couchbase Inc. All rights reserved.
 //
 
 import Foundation
@@ -11,14 +8,14 @@ import UIKit
 
 // MVP pattern
 // The View COntroller or view that handles presentation of data must implement this protocol
-public protocol PresentingViewProtocol: class {
+public protocol PresentingViewProtocol: AnyObject {
     func dataStartedLoading()
     func dataFinishedLoading()
     func showAlertWithTitle(_ title:String?, message:String)
 }
 
 // All Presenters must implement this protocol
-public protocol PresenterProtocol: class {
+public protocol PresenterProtocol: AnyObject {
     func attachPresentingView(_ view:PresentingViewProtocol)
     func detachPresentingView(_ view:PresentingViewProtocol)
 }
@@ -39,8 +36,8 @@ extension PresentingViewProtocol where Self:UIViewController {
     
     func showAlertWithTitle(_ title:String?, message:String) {
         
-        let alertController = UIAlertController(title: title ?? "", message: message, preferredStyle: UIAlertControllerStyle.alert)
-        let okAction = UIAlertAction(title: NSLocalizedString("OK",comment:""), style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+        let alertController = UIAlertController(title: title ?? "", message: message, preferredStyle: UIAlertController.Style.alert)
+        let okAction = UIAlertAction(title: NSLocalizedString("OK",comment:""), style: UIAlertAction.Style.default) { (result : UIAlertAction) -> Void in
             self.dismiss(animated: true, completion: {
                 
             })

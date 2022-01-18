@@ -1,11 +1,7 @@
 //
-//  StoryboardExtension.swift
 //  UserProfileDemo
-//
-//  Created by Priya Rajagopal on 2/19/18.
-//  Copyright © 2018 Couchbase Inc. All rights reserved.
-//
-
+//  Copyright © 2022 Couchbase Inc. All rights reserved.
+/*
 import UIKit
 
 extension UIStoryboard {
@@ -43,4 +39,4 @@ extension StoryboardIdentifiable where Self:UIViewController {
         return String(describing: self)
     }
 }
-
+*/
