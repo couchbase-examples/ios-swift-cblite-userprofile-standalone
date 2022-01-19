@@ -45,26 +45,35 @@ class FunctionalTests:
         app.launch()
         
         //arrange - login demo user
-        loginDemoUser(application: app)
+        loginDemoUser(application: app,
+            usernameText: TestingHelper.TESTUSERNAME,
+            passwordText: TestingHelper.TESTPASSWORD)
        
         //act - update profile
         updateUserProfile(application: app)
         
         //arrange - login demo user
-        loginDemoUser1(application: app)
+        loginDemoUser(application: app,
+                      usernameText: TestingHelper.TESTUSERNAME2,
+                      passwordText: TestingHelper.TESTPASSWORD)
         
         //assert - fields are blank because we should be loading a new user
         assertUserProfileDemoUser1(application: app)
        
         //arrange - log back in as demo user and assert values were pulled from db
-        loginDemoUser(application: app)
+        loginDemoUser(application: app,
+            usernameText: TestingHelper.TESTUSERNAME,
+            passwordText: TestingHelper.TESTPASSWORD)
         
         //assert - data was retreived from the database
         assertUserProfileDemoUser(application: app)
     }
     
     //arrange
-    func loginDemoUser(application: XCUIApplication) {
+    func loginDemoUser(
+        application: XCUIApplication,
+        usernameText: String,
+        passwordText: String) {
         
         let username = application.textFields[TestingHelper.IDUSERNAME]
         let password = application.secureTextFields[TestingHelper.IDPASSWORD]
@@ -72,16 +81,16 @@ class FunctionalTests:
         let systemVersion = UIDevice.current.systemVersion
         
         username.tap()
-        username.typeText(TestingHelper.TESTUSERNAME)
+        username.typeText(usernameText)
         
         //fix for older IOS versions than 15.x
         if (systemVersion.contains("15.")) {
             password.tap()
-            password.typeText(TestingHelper.TESTPASSWORD)
+            password.typeText(passwordText)
         } else {
             password.tap()
             sleep(1)
-            UIPasteboard.general.string = TestingHelper.TESTPASSWORD
+            UIPasteboard.general.string = passwordText
             password.press(forDuration: 1.5)
             application.menuItems["Paste"].tap()
             sleep(3)
@@ -89,34 +98,6 @@ class FunctionalTests:
 
         btn.tap()
         sleep(3)
-    }
-    
-    //arrange
-    func loginDemoUser1(application: XCUIApplication) {
-        
-        let username = application.textFields[TestingHelper.IDUSERNAME]
-        let password = application.secureTextFields[TestingHelper.IDPASSWORD]
-        let btn = application.buttons[TestingHelper.IDLOGIN]
-        let systemVersion = UIDevice.current.systemVersion
-        
-        username.tap()
-        username.typeText(TestingHelper.TESTUSERNAME2)
-        
-        //fix for older IOS versions than 15.x
-        if (systemVersion.contains("15.")) {
-            password.tap()
-            password.typeText(TestingHelper.TESTPASSWORD)
-        } else {
-            sleep(1)
-            password.tap()
-            UIPasteboard.general.string = TestingHelper.TESTPASSWORD
-            password.press(forDuration: 1.5)
-            application.menuItems["Paste"].tap()
-            sleep(3)
-        }
-        
-        btn.tap()
-        sleep(5)
     }
     
     //assert
